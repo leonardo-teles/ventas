@@ -10,4 +10,10 @@ public interface IClienteService {
 	List<Cliente> findAll();
 	
 	Optional<Cliente> findById(Integer id);
+	
+	Cliente create(Cliente cliente);
+	
+	Cliente update(Cliente cliente);
+	
+	void delete(Integer id);
 }
