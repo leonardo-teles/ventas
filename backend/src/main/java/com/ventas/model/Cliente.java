@@ -19,13 +19,13 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idCliente;
 	
-	@NotNull
+	@NotNull(message = "El nombre no puede ser nulo")
 	@NotBlank(message = "El nombre es obligatorio")
 	@Size(min = 3, max = 70, message = "El nombre debe ser mayor a 3 caracteres")	
 	@Column(name = "nombre", nullable = false, length = 70)
 	private String nombre;
 
-	@NotNull
+	@NotNull(message = "El apellido no puede ser nulo")
 	@NotBlank(message = "El apellido es obligatorio")
 	@Size(min = 3, max = 150, message = "El apellido debe ser mayor a 3 caracteres")	
 	@Column(name = "apellido", nullable = false, length = 150)
@@ -39,7 +39,7 @@ public class Cliente {
 	@Column(name = "telefono", nullable = true, length = 10)
 	private String telefono;
 
-	@NotNull
+	@NotNull(message = "El e-mail no puede ser nulo")
 	@NotBlank(message = "El e-mail es obligatorio")
 	@Size(min = 10, message = "El e-mail debe ser al menos de 10 caracteres")
 	@Email(message = "El e-mail enviado no es un formato válido")
