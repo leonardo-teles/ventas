@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const TableCliente = () => {
+
+    const[clientesList, setClientesList] = useState([
+
+    ]);
+
     return ( 
         <div className="table-container">
             <table className="table is-hoverable is-fullwidth">
