@@ -20,7 +20,7 @@ const Modal = (props) => {
                     </button>
                 </header>
                 <section className="modal-card-body">
-                    Contenido
+                    {props.children}
                 </section>
             </div>
         </div>
