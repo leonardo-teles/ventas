@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Modal = (props) => {
+
+    const[showModal, setShowModal] =  useState(false);
 
     const cerrarModal = () => {
         console.log('cerrando...')
     }
 
     return ( 
-        <div className="modal is-active">
+        <div className={`modal ${showModal ? 'is-active' : ''}`}>
             <div className="modal-background"></div>
             <div className="modal-card">
                 <header className="modal-card-head">
