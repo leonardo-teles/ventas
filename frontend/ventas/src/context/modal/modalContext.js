@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const ModalContext = createContext();
 
@@ -8,7 +8,7 @@ export const ModalContextProvider = props => {
     const[modalTitle, setModalTitle] =  useState('');
 
     return(
-        <ModalContext.Provider value={ { showModal, modal, setShowModal, setModalTitle } }>
+        <ModalContext.Provider value={ { showModal, modalTitle, setShowModal, setModalTitle } }>
             {props.children}
         </ModalContext.Provider>
     )
