@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 const Modal = (props) => {
 
-    const[showModal, setShowModal] =  useState(false);
-
     const cerrarModal = () => {
         console.log('cerrando...')
     }
