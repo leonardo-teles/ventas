@@ -4,7 +4,7 @@ import { ModalContext } from '../context/modal/modalContext';
 
 const Modal = (props) => {
 
-    const {showModal, modalTitle, setShowModal} =  useContext(ModalContext)
+    const {showModal, modalTitle, setShowModal, setModalTitle} =  useContext(ModalContext);
     
     return ( 
         <div className={`modal ${showModal ? 'is-active' : ''}`}>
@@ -15,7 +15,7 @@ const Modal = (props) => {
                     <button 
                         className="delete" 
                         aria-label="close" 
-                        onClick={() => setShowModal(false)}
+                        onClick={() => { setShowModal(false); setModalTitle(''); }}
                     >
                     </button>
                 </header>
