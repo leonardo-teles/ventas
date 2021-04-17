@@ -49,7 +49,7 @@ export const ClienteContextProvider = props => {
     }
 
     return(
-        <ClienteContext.Provider value={{clientesList: state.clientesList}}>
+        <ClienteContext.Provider value={{clientesList: state.clientesList, obtenerClientes}}>
             {props.children}
         </ClienteContext.Provider>
     )

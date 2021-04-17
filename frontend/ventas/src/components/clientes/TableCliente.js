@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import RowCliente from './RowCliente';
 import { ClienteContext } from '../../context/clienteContext';
 
 const TableCliente = () => {
 
-    const { clientesList } = useContext(ClienteContext);
+    const { clientesList, obtenerClientes } = useContext(ClienteContext);
+
+    useEffect(() => {
+        obtenerClientes();
+    }, []);
 
     if(clientesList.length === 0) 
         return <center><p>No existen clientes</p></center>
