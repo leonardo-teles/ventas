@@ -1,35 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import RowCliente from './RowCliente';
+import { ClienteContext } from '../../context/clienteContext';
 
 const TableCliente = () => {
 
-    const[clientesList, setClientesList] = useState([
-        {
-            "idCliente" : 1,
-            "nombre" : "Leonardo",
-            "apellido" : "Teles de Almeida",
-            "direccion" : "Estrada da Cachamorra",
-            "telefono" : "979615072",
-            "email" : "leonardo.teles.almeida@gmail.com"
-        },
-        {
-            "idCliente" : 2,
-            "nombre" : "Manuela",
-            "apellido" : "Souza de Almeida",
-            "direccion" : "Estrada da Cachamorra",
-            "telefono" : "991054374",
-            "email" : "manuela.souza.almeida@gmail.com"
-        },
-        {
-            "idCliente" : 3,
-            "nombre" : "Juliana",
-            "apellido" : "Ferreira de Almeida",
-            "direccion" : "Rua Murilo Alvarenga",
-            "telefono" : "12345678",
-            "email" : "juliana.ferreira.almeida@gmail.com"
-        }
-    ]);
+    const { clientesList } = useContext(ClienteContext);
+
+    if(clientesList.length === 0) 
+        return <center><p>No existen clientes</p></center>
 
     return ( 
         <div className="table-container">
