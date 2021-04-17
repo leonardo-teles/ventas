@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { ModalContext } from '../../context/modal/modalContext';
+import { ModalContext } from '../../context/modalContext';
+
 
 const FormCliente = () => {
 
