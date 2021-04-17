@@ -33,15 +33,21 @@ const FormCliente = () => {
         //obtener objeto a enviar
 
         //cerrar y enviar el modal 
+        cerrarModal();
 
 
 
 
+        
+    }
 
-        console.log(cliente);
+    const limpiarForm = () => {
+        setMensaje(null);
+        setCliente(clienteDefault);
     }
 
     const cerrarModal = () => {
+        limpiarForm();
         setShowModal(false);
     }
 
