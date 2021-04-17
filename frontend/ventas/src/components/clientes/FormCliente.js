@@ -31,6 +31,7 @@ const FormCliente = () => {
         }
 
         //obtener objeto a enviar
+        console.log(obtenerClienteAEnviar());
 
         //cerrar y enviar el modal 
         cerrarModal();
@@ -49,6 +50,14 @@ const FormCliente = () => {
     const cerrarModal = () => {
         limpiarForm();
         setShowModal(false);
+    }
+
+    const obtenerClienteAEnviar = () => {
+        let clienteTmp = {...cliente};
+        if(clienteTmp.direccion === "") delete clienteTmp.direccion;
+        if(clienteTmp.telefono === "")  delete clienteTmp.telefono;
+
+        return clienteTmp;
     }
 
     return ( 
