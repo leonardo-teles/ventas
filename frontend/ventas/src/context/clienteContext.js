@@ -1,7 +1,9 @@
 import React, { createContext, useReducer } from 'react';
 
-import { OBTENER_CLIENTES } from '../const/actionTypes';
+import {v4 as uuidv4} from 'uuid';
+
 import ClienteReducer from '../reducer/clienteReducer';
+import { OBTENER_CLIENTES, REGISTRAR_CLIENTE } from '../const/actionTypes';
 
 export const ClienteContext = createContext();
 
@@ -48,8 +50,20 @@ export const ClienteContextProvider = props => {
         })
     }
 
+    const registrarCliente = cliente => {
+
+        let clienteNuevo = {
+            ...cliente, idCliente: uuidv4()
+        }
+
+        dispatch({
+            type: REGISTRAR_CLIENTE,
+            payload: clienteNuevo
+        })
+    }
+
     return(
-        <ClienteContext.Provider value={{clientesList: state.clientesList, obtenerClientes}}>
+        <ClienteContext.Provider value={{clientesList: state.clientesList, obtenerClientes, registrarCliente}}>
             {props.children}
         </ClienteContext.Provider>
     )

@@ -9,6 +9,7 @@ const TableCliente = () => {
 
     useEffect(() => {
         obtenerClientes();
+        // eslint-disable-next-line
     }, []);
 
     if(clientesList.length === 0) 

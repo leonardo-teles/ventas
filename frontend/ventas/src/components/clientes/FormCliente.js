@@ -1,10 +1,13 @@
-import React, { useContext, useState } from 'react'
-import { ModalContext } from '../../context/modalContext';
+import React, { useContext, useState } from 'react';
 
+import { ClienteContext } from '../../context/clienteContext';
+import { ModalContext } from '../../context/modalContext';
 
 const FormCliente = () => {
 
     const {setShowModal} =  useContext(ModalContext);
+
+    const {registrarCliente} = useContext(ClienteContext);
 
     const clienteDefault = {
         nombre   : '',
@@ -32,14 +35,10 @@ const FormCliente = () => {
         }
 
         //obtener objeto a enviar
-        console.log(obtenerClienteAEnviar());
+        registrarCliente(obtenerClienteAEnviar());
 
         //cerrar y enviar el modal 
         cerrarModal();
-
-
-
-
         
     }
 
