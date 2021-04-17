@@ -13,7 +13,8 @@ const FormCliente = () => {
         email    : ''
     }
 
-    const [cliente, setCliente] = useState({clienteDefault});
+    const [cliente, setCliente] = useState(clienteDefault);
+    const [mensaje, setMensaje] = useState(null);
 
     const handleChange = e => {
         setCliente({ ...cliente, [e.target.name] : e.target.value })
@@ -21,6 +22,22 @@ const FormCliente = () => {
 
     const handleOnSubmit = e => {
         e.preventDefault();
+
+        //validar
+        if(cliente.nombre.trim() === '' && cliente.apellido.trim() === '' && cliente.email.trim() === '') {
+            setMensaje('El nombre, apellidos y el e-mail son obligatorios');
+
+            return;
+        }
+
+        //obtener objeto a enviar
+
+        //cerrar y enviar el modal 
+
+
+
+
+
         console.log(cliente);
     }
 
@@ -31,6 +48,8 @@ const FormCliente = () => {
     return ( 
         <form onSubmit={handleOnSubmit}>
             
+            { mensaje ? <div className="notification is-danger"> {mensaje} </div> : null } 
+
             <div className="field is-horizontal">
                 <div className="field-label is-normal">
                     <label className="label">Nombre Completo</label>
