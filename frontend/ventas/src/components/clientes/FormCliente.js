@@ -7,7 +7,7 @@ const FormCliente = () => {
 
     const {setShowModal} =  useContext(ModalContext);
 
-    const {registrarCliente, clienteActual} = useContext(ClienteContext);
+    const {registrarCliente, clienteActual, obtenerCliente, actualizarCliente} = useContext(ClienteContext);
 
     const clienteDefault = {
         nombre   : '',
@@ -24,8 +24,8 @@ const FormCliente = () => {
         if(clienteActual !== null) {
             setCliente({
                 ...clienteActual,
-                direccion: clienteActual.direccion !== null ? clienteActual.direccion : '',
-                telefono: clienteActual.telefono !== null ? clienteActual.telefono : ''
+                direccion: clienteActual.direccion ? clienteActual.direccion : '',
+                telefono: clienteActual.telefono   ? clienteActual.telefono  : ''
             })
         } else {
             setCliente(clienteDefault);
@@ -48,7 +48,11 @@ const FormCliente = () => {
         }
 
         //obtener objeto a enviar
-        registrarCliente(obtenerClienteAEnviar());
+        if(clienteActual !== null) {
+            actualizarCliente(obtenerClienteAEnviar());
+        } else {
+            registrarCliente(obtenerClienteAEnviar());
+        }
 
         //cerrar y enviar el modal 
         cerrarModal();
@@ -63,6 +67,7 @@ const FormCliente = () => {
     const cerrarModal = () => {
         limpiarForm();
         setShowModal(false);
+        obtenerCliente(null);
     }
 
     const obtenerClienteAEnviar = () => {

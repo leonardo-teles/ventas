@@ -1,14 +1,18 @@
 import React, { useContext } from 'react';
 
 import { ModalContext } from '../../context/modalContext';
+import { ClienteContext } from '../../context/clienteContext';
 
 const ToolbarCliente = () => {
 
     const {setShowModal, setModalTitle} =  useContext(ModalContext);
 
+    const {obtenerCliente} = useContext(ClienteContext);
+
     const abrirModalCrear = () => {
         setModalTitle('Registrar Nuevo Cliente');
         setShowModal(true);
+        obtenerCliente(null);
     }
 
     return ( 

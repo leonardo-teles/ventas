@@ -1,4 +1,4 @@
-import { OBTENER_CLIENTES, REGISTRAR_CLIENTE, OBTENER_CLIENTE } from "../const/actionTypes";
+import { OBTENER_CLIENTES, REGISTRAR_CLIENTE, OBTENER_CLIENTE, MODIFICAR_CLIENTE } from "../const/actionTypes";
 
 
 const clienteReducer = (state, action) => { 
@@ -18,7 +18,14 @@ const clienteReducer = (state, action) => {
         case OBTENER_CLIENTE:
             return {
                 ...state, clienteActual: action.payload
-            };    
+            }; 
+            
+        case MODIFICAR_CLIENTE:
+            return {
+                ...state, clientesList: state.clientesList.map(
+                    cliente => cliente.idCliente === action.payload.idCliente ? action.payload : cliente
+                )
+            }    
 
         default:
             return state;
