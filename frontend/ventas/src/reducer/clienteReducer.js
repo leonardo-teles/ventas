@@ -1,4 +1,4 @@
-import { OBTENER_CLIENTES, REGISTRAR_CLIENTE, OBTENER_CLIENTE, MODIFICAR_CLIENTE } from "../const/actionTypes";
+import { OBTENER_CLIENTES, REGISTRAR_CLIENTE, OBTENER_CLIENTE, MODIFICAR_CLIENTE, ELIMINAR_CLIENTE } from "../const/actionTypes";
 
 
 const clienteReducer = (state, action) => { 
@@ -25,7 +25,12 @@ const clienteReducer = (state, action) => {
                 ...state, clientesList: state.clientesList.map(
                     cliente => cliente.idCliente === action.payload.idCliente ? action.payload : cliente
                 )
-            }    
+            };
+            
+        case ELIMINAR_CLIENTE:
+            return {
+                ...state, clientesList: state.clientesList.filter(cliente => cliente.idCliente !== action.payload)
+            };    
 
         default:
             return state;

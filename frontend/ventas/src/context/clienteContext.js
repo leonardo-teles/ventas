@@ -3,7 +3,7 @@ import React, { createContext, useReducer } from 'react';
 import {v4 as uuidv4} from 'uuid';
 
 import ClienteReducer from '../reducer/clienteReducer';
-import { OBTENER_CLIENTES, REGISTRAR_CLIENTE, OBTENER_CLIENTE, MODIFICAR_CLIENTE } from '../const/actionTypes';
+import { OBTENER_CLIENTES, REGISTRAR_CLIENTE, OBTENER_CLIENTE, MODIFICAR_CLIENTE, ELIMINAR_CLIENTE } from '../const/actionTypes';
 
 export const ClienteContext = createContext();
 
@@ -77,13 +77,21 @@ export const ClienteContextProvider = props => {
         })
     }
 
+    const eliminarCliente = idCliente => {
+        dispatch({
+            type: ELIMINAR_CLIENTE,
+            payload: idCliente
+        })
+    }
+
     return(
         <ClienteContext.Provider 
             value={{clientesList: state.clientesList, clienteActual: state.clienteActual,
                     obtenerClientes, 
                     registrarCliente, 
                     obtenerCliente,
-                    actualizarCliente
+                    actualizarCliente,
+                    eliminarCliente
             }}
         >
             {props.children}
