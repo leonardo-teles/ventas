@@ -19,38 +19,13 @@ export const ClienteContextProvider = props => {
 
     const obtenerClientes = async () => {
 
-        await axios.get('http://localhost:8080/api/clientes');
+        const resultado = await axios.get('http://localhost:8080/api/clientes');
 
-        const clientes = [
-            {
-                "idCliente" : 1,
-                "nombre" : "Leonardo",
-                "apellido" : "Teles de Almeida",
-                "direccion" : "Estrada da Cachamorra",
-                "telefono" : "979615072",
-                "email" : "leonardo.teles.almeida@gmail.com"
-            },
-            {
-                "idCliente" : 2,
-                "nombre" : "Manuela",
-                "apellido" : "Souza de Almeida",
-                "direccion" : "Estrada da Cachamorra",
-                "telefono" : "991054374",
-                "email" : "manuela.souza.almeida@gmail.com"
-            },
-            {
-                "idCliente" : 3,
-                "nombre" : "Juliana",
-                "apellido" : "Ferreira de Almeida",
-                "direccion" : "Rua Murilo Alvarenga",
-                "telefono" : "12345678",
-                "email" : "juliana.ferreira.almeida@gmail.com"
-            }
-        ];
+        console.log(resultado);
 
         dispatch({
             type: OBTENER_CLIENTES,
-            payload: clientes
+            payload: resultado.data
         })
     }
 
