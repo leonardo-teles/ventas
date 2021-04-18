@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 
 import {v4 as uuidv4} from 'uuid';
+import axios from 'axios';
 
 import ClienteReducer from '../reducer/clienteReducer';
 import { OBTENER_CLIENTES, REGISTRAR_CLIENTE, OBTENER_CLIENTE, MODIFICAR_CLIENTE, ELIMINAR_CLIENTE } from '../const/actionTypes';
@@ -16,7 +17,9 @@ export const ClienteContextProvider = props => {
 
     const [state, dispatch] = useReducer(ClienteReducer, initialState);
 
-    const obtenerClientes = () => {
+    const obtenerClientes = async () => {
+
+        await axios.get('http://localhost:8080/api/clientes');
 
         const clientes = [
             {
