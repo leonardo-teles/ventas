@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { ClienteContext } from '../../context/clienteContext';
 import { ModalContext } from '../../context/modalContext';
@@ -7,7 +7,7 @@ const FormCliente = () => {
 
     const {setShowModal} =  useContext(ModalContext);
 
-    const {registrarCliente} = useContext(ClienteContext);
+    const {registrarCliente, clienteActual} = useContext(ClienteContext);
 
     const clienteDefault = {
         nombre   : '',
@@ -19,6 +19,19 @@ const FormCliente = () => {
 
     const [cliente, setCliente] = useState(clienteDefault);
     const [mensaje, setMensaje] = useState(null);
+
+    useEffect(() => {
+        if(clienteActual !== null) {
+            setCliente({
+                ...clienteActual,
+                direccion: clienteActual.direccion !== null ? clienteActual.direccion : '',
+                telefono: clienteActual.telefono !== null ? clienteActual.telefono : ''
+            })
+        } else {
+            setCliente(clienteDefault);
+        }
+        // eslint-disable-next-line
+    }, [clienteActual]);
 
     const handleChange = e => {
         setCliente({ ...cliente, [e.target.name] : e.target.value })
