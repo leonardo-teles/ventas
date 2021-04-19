@@ -19,9 +19,7 @@ export const ClienteContextProvider = props => {
 
     const obtenerClientes = async () => {
 
-        const resultado = await axios.get('http://localhost:8080/api/clientes');
-
-        console.log(resultado);
+        const resultado = await axios.get('/clientes');
 
         dispatch({
             type: OBTENER_CLIENTES,
