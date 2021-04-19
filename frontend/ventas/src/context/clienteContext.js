@@ -67,11 +67,17 @@ export const ClienteContextProvider = props => {
         }
     }
 
-    const actualizarCliente = cliente => {
-        dispatch({
-            type: MODIFICAR_CLIENTE,
-            payload: cliente
-        })
+    const actualizarCliente = async cliente => {
+
+        try {
+            const resultado = await axios.put(`/clientes`, cliente);
+            dispatch({
+                type: MODIFICAR_CLIENTE,
+                payload: resultado.data
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const eliminarCliente = idCliente => {
