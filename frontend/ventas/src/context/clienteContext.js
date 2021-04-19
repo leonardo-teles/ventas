@@ -1,6 +1,5 @@
 import React, { createContext, useReducer } from 'react';
 
-import {v4 as uuidv4} from 'uuid';
 import axios from 'axios';
 
 import ClienteReducer from '../reducer/clienteReducer';
@@ -19,24 +18,32 @@ export const ClienteContextProvider = props => {
 
     const obtenerClientes = async () => {
 
-        const resultado = await axios.get('/clientes');
-
-        dispatch({
-            type: OBTENER_CLIENTES,
-            payload: resultado.data
-        })
+        try {
+            const resultado = await axios.get('/clientes');
+    
+            dispatch({
+                type: OBTENER_CLIENTES,
+                payload: resultado.data
+            })
+            
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    const registrarCliente = cliente => {
+    const registrarCliente = async cliente => {
 
-        let clienteNuevo = {
-            ...cliente, idCliente: uuidv4()
+        try {
+            const resultado = await axios.post('/clientes', cliente);
+    
+            dispatch({
+                type: REGISTRAR_CLIENTE,
+                payload: resultado.data
+            })
+            
+        } catch (error) {
+            console.log(error);
         }
-
-        dispatch({
-            type: REGISTRAR_CLIENTE,
-            payload: clienteNuevo
-        })
     }
 
     const obtenerCliente = cliente => {
