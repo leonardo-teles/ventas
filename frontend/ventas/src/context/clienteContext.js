@@ -46,11 +46,25 @@ export const ClienteContextProvider = props => {
         }
     }
 
-    const obtenerCliente = cliente => {
-        dispatch({
-            type: OBTENER_CLIENTE,
-            payload: cliente
-        })
+    const obtenerCliente = async cliente => {
+
+        try {
+            let clienteEncontrado = null;
+
+            if(cliente !== null) {
+                const resultado = await axios.get(`/clientes/${cliente.idCliente}`);
+                clienteEncontrado = resultado.data;
+            } else {
+                clienteEncontrado = cliente;
+            }
+
+            dispatch({
+                type: OBTENER_CLIENTE,
+                payload: clienteEncontrado
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const actualizarCliente = cliente => {
