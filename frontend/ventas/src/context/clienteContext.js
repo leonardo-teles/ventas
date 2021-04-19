@@ -120,20 +120,31 @@ export const ClienteContextProvider = props => {
     const eliminarCliente = async idCliente => {
 
         try {
-            await axios.delete(`/clientes/${idCliente}`);
-
-            dispatch({
-                type: ELIMINAR_CLIENTE,
-                payload: idCliente
-            })
 
             Swal.fire({
-                icon: 'success',
-                title: 'Correcto',
-                text: 'Cliente eliminado correctamente',
-                toast: true
-            });
-
+                icon: 'question',
+                title: '¿Desea continuar?',
+                text: 'Se elinimará el cliente seleccionado',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, eliminar'
+            }).then( async(result) => {
+                
+                if(result.value) {
+                    await axios.delete(`/clientes/${idCliente}`);
+        
+                    dispatch({
+                        type: ELIMINAR_CLIENTE,
+                        payload: idCliente
+                    })
+        
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Correcto',
+                        text: 'Cliente eliminado correctamente',
+                        toast: true
+                    });
+                }
+            })
         } catch (error) {
             Swal.fire({
                 icon: 'error',
