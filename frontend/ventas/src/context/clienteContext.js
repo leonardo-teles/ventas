@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 import ClienteReducer from '../reducer/clienteReducer';
 import { OBTENER_CLIENTES, REGISTRAR_CLIENTE, OBTENER_CLIENTE, MODIFICAR_CLIENTE, ELIMINAR_CLIENTE } from '../const/actionTypes';
@@ -27,7 +28,12 @@ export const ClienteContextProvider = props => {
             })
             
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo obtener los clientes',
+                toast: true
+            });
         }
     }
 
