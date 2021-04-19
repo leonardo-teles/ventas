@@ -46,9 +46,21 @@ export const ClienteContextProvider = props => {
                 type: REGISTRAR_CLIENTE,
                 payload: resultado.data
             })
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Correcto',
+                text: 'Cliente registrado correctamente',
+                toast: true
+            });
             
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo registrar el cliente',
+                toast: true
+            });
         }
     }
 
@@ -69,7 +81,12 @@ export const ClienteContextProvider = props => {
                 payload: clienteEncontrado
             })
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo obtener el cliente',
+                toast: true
+            });
         }
     }
 
@@ -77,12 +94,26 @@ export const ClienteContextProvider = props => {
 
         try {
             const resultado = await axios.put(`/clientes`, cliente);
+
             dispatch({
                 type: MODIFICAR_CLIENTE,
                 payload: resultado.data
             })
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Correcto',
+                text: 'Cliente modificado correctamente',
+                toast: true
+            });
+
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo modificar el cliente',
+                toast: true
+            });            
         }
     }
 
@@ -90,12 +121,26 @@ export const ClienteContextProvider = props => {
 
         try {
             await axios.delete(`/clientes/${idCliente}`);
+
             dispatch({
                 type: ELIMINAR_CLIENTE,
                 payload: idCliente
             })
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Correcto',
+                text: 'Cliente eliminado correctamente',
+                toast: true
+            });
+
         } catch (error) {
-            console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo eliminar el cliente',
+                toast: true
+            });
         }
     }
 
