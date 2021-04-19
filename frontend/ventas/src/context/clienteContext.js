@@ -80,11 +80,17 @@ export const ClienteContextProvider = props => {
         }
     }
 
-    const eliminarCliente = idCliente => {
-        dispatch({
-            type: ELIMINAR_CLIENTE,
-            payload: idCliente
-        })
+    const eliminarCliente = async idCliente => {
+
+        try {
+            await axios.delete(`/clientes/${idCliente}`);
+            dispatch({
+                type: ELIMINAR_CLIENTE,
+                payload: idCliente
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return(
